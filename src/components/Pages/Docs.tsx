@@ -10,7 +10,7 @@ export const Docs = () => {
         <DocumentContent />
       </div>
       <div className="w-full h-10 text-center pt-3 bg-sky-50 font-mono ">
-        &copy; Tasky
+        &copy; Eng Word
       </div>
     </>
   );

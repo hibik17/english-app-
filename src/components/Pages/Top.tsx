@@ -13,7 +13,7 @@ export const Top = () => {
     <div className="w-full">
       <Header />
       {/* 新規登録フォームと新しく追加された単語の表示横並び */}
-      <div className="md:flex mx-auto my-10 px-10">
+      <div className="md:flex mx-auto my-10 px-10 animate-in slide-in-from-left duration-500">
         <div className="w-full mx-5">
           <FormTitle />
           <Form />
@@ -24,13 +24,15 @@ export const Top = () => {
         </div>
       </div>
       {/* 登録された単語のカードの表示 */}
-      <CardTitle />
-      <div className="px-10 grid sm:mx-auto sm:grid-cols-1 sm:gap-3 md:grid-cols-3 lg:grid-cols-5 md:gap-4">
-        <WordCard />
-        <WordCard />
-        <WordCard />
-        <WordCard />
-        <WordCard />
+      <div className="animate-in slide-in-from-bottom duration-500">
+        <CardTitle />
+        <div className="px-10 grid sm:mx-auto sm:grid-cols-1 sm:gap-3 md:grid-cols-3 lg:grid-cols-5 md:gap-4">
+          <WordCard />
+          <WordCard />
+          <WordCard />
+          <WordCard />
+          <WordCard />
+        </div>
       </div>
       <Footer />
     </div>

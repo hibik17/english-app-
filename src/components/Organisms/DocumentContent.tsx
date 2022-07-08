@@ -3,7 +3,7 @@ import { GiOwl } from "react-icons/gi";
 
 export const DocumentContent = () => {
   return (
-    <div className="w-full h-auto ">
+    <div className="w-full h-auto animate-in slide-in-from-bottom duration-700">
       <div className="container mx-auto">
         {/* title */}
         <span className="flex text-center p-20">
@@ -12,7 +12,7 @@ export const DocumentContent = () => {
         </span>
 
         {/* explanation card */}
-        <div className="w-4/5 mx-auto rounded-md h-full bg-slate-200 shadow-lg p-8">
+        <div className="w-4/5 mx-auto rounded-md min-h-[300px] bg-slate-200 shadow-lg p-8">
           <span className="text-2xl font-mono text-gray-400">
             Quick Start Guide
           </span>
