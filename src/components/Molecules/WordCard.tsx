@@ -5,11 +5,12 @@ import { ImMic } from "react-icons/im";
 type Props = {
   word: string;
   answer: string;
+  deleteWord: () => void;
 };
 
 export const WordCard: FC<Props> = (props: Props) => {
   // propsの展開
-  const { word, answer } = props;
+  const { word, answer, deleteWord } = props;
 
   // 英単語の読み上げ機能実装
   const ReadEnglish = () => {
@@ -36,7 +37,10 @@ export const WordCard: FC<Props> = (props: Props) => {
           >
             answer
           </button>
-          <button className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100">
+          <button
+            className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100"
+            onClick={deleteWord}
+          >
             delete
           </button>
         </div>

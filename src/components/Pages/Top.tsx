@@ -14,6 +14,7 @@ export const Top = memo(() => {
 
   // 新規登録の英語の意味の入力を管理するstate
   const [answer, setAnswer] = useState("");
+
   // 英単語の管理を行うカード
   const [wordList, setWordList] = useState([
     { word: "apple", answer: "りんご" },
@@ -23,12 +24,20 @@ export const Top = memo(() => {
 
   // 英単語の追加を行う
   const AddCard = () => {
+    if (newWord === "" || answer === "") return;
+
     setWordList([...wordList, { word: newWord, answer: answer }]);
     setWord("");
     setAnswer("");
   };
 
-  console.log(wordList);
+  // 英単語のカードの削除を行う。
+  const deleteWord = (index: number) => {
+    const newCardList = [...wordList];
+    newCardList.slice(index, 1);
+    setWordList(newCardList);
+    return alert("カードを削除しました");
+  };
 
   return (
     <div className="w-full">
@@ -79,7 +88,7 @@ export const Top = memo(() => {
         </div>
         <div className="w-full mx-5">
           <TableTitle />
-          <Table />
+          <Table wordList={wordList} />
         </div>
       </div>
       {/* 登録された単語のカードの表示 */}
@@ -87,7 +96,12 @@ export const Top = memo(() => {
         <CardTitle />
         <div className="px-10 grid sm:mx-auto sm:grid-cols-1 sm:gap-3 md:grid-cols-3 lg:grid-cols-5 md:gap-4">
           {wordList.map((list, index) => (
-            <WordCard key={index} word={list.word} answer={list.answer} />
+            <WordCard
+              key={index}
+              word={list.word}
+              answer={list.answer}
+              deleteWord={deleteWord}
+            />
           ))}
         </div>
       </div>

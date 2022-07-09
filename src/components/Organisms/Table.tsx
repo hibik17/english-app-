@@ -1,6 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 
-export const Table = () => {
+type Word = {
+  word: string;
+  answer: string;
+};
+
+type Props = {
+  wordList: Word[];
+};
+
+export const Table: FC<Props> = (props: Props) => {
+  // tableで表示をする単語のリストをpropsから取得
+  const { wordList } = props;
   return (
     <table className="table-auto w-full">
       <thead className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
@@ -10,30 +21,12 @@ export const Table = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className="border px-4 py-2">word</td>
-          <td className="border px-4 py-2">meaning</td>
-        </tr>
-        <tr>
-          <td className="border px-4 py-2">word</td>
-          <td className="border px-4 py-2">meaning</td>
-        </tr>
-        <tr>
-          <td className="border px-4 py-2">word</td>
-          <td className="border px-4 py-2">meaning</td>
-        </tr>
-        <tr>
-          <td className="border px-4 py-2">word</td>
-          <td className="border px-4 py-2">meaning</td>
-        </tr>
-        <tr>
-          <td className="border px-4 py-2">word</td>
-          <td className="border px-4 py-2">meaning</td>
-        </tr>
-        <tr>
-          <td className="border px-4 py-2">word</td>
-          <td className="border px-4 py-2">meaning</td>
-        </tr>
+        {wordList.map((list, index) => (
+          <tr key={index}>
+            <th className="border px-4 py-2">{list.word}</th>
+            <th className="border px-4 py-2">{list.answer}</th>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
