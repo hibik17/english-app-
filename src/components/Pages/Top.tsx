@@ -22,6 +22,14 @@ export const Top = memo(() => {
     { word: "little", answer: "少し" },
   ]);
 
+  // 英単語のカードの削除を行う。
+  const deleteWord = (index: number) => {
+    const newCardList = [...wordList];
+    newCardList.splice(index, 1);
+    setWordList(newCardList);
+    console.log("action");
+  };
+
   // 英単語の追加を行う
   const AddCard = () => {
     if (newWord === "" || answer === "") return;
@@ -29,14 +37,6 @@ export const Top = memo(() => {
     setWordList([...wordList, { word: newWord, answer: answer }]);
     setWord("");
     setAnswer("");
-  };
-
-  // 英単語のカードの削除を行う。
-  const deleteWord = (index: number) => {
-    const newCardList = [...wordList];
-    newCardList.slice(index, 1);
-    setWordList(newCardList);
-    return alert("カードを削除しました");
   };
 
   return (
@@ -101,6 +101,7 @@ export const Top = memo(() => {
               word={list.word}
               answer={list.answer}
               deleteWord={deleteWord}
+              index={index}
             />
           ))}
         </div>
