@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { BsPatchQuestion } from "react-icons/bs";
 import { ImMic } from "react-icons/im";
+import { Modal } from "./Modal";
 
 type Props = {
   word: string;
@@ -12,6 +13,9 @@ type Props = {
 export const WordCard: FC<Props> = (props: Props) => {
   // propsの展開
   const { word, answer, deleteWord, index } = props;
+
+  // modalのフラグ
+  const [showModal, setShowModal] = useState(false);
 
   // 英単語の読み上げ機能実装
   const ReadEnglish = () => {
@@ -34,7 +38,7 @@ export const WordCard: FC<Props> = (props: Props) => {
         <div className="flex mt-4 space-x-3 lg:mt-6">
           <button
             className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-            onClick={() => alert(answer)}
+            onClick={() => setShowModal(!showModal)}
           >
             answer
           </button>
@@ -46,6 +50,7 @@ export const WordCard: FC<Props> = (props: Props) => {
           </button>
         </div>
       </div>
+      {showModal && <Modal />}
     </div>
   );
 };
