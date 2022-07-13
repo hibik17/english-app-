@@ -20,6 +20,10 @@ export const Top = memo(() => {
     { word: "apple", answer: "りんご" },
     { word: "lucky", answer: "運が良い" },
     { word: "little", answer: "少し" },
+    { word: "challege", answer: "挑戦" },
+    { word: "house", answer: "家" },
+    { word: "document", answer: "文書" },
+    { word: "team", answer: "チーム" },
   ]);
 
   // 英単語のカードの削除を行う。
@@ -28,18 +32,6 @@ export const Top = memo(() => {
     newCardList.splice(index, 1);
     setWordList(newCardList);
     console.log("card was deleted");
-  };
-
-  // 最近追加されたカードのリストを作成
-  var newWordList = new Array();
-  window.onload = () => {
-    const newWords = [...wordList].reverse();
-    console.log(newWords);
-    newWords.map((word, index) => {
-      if (index < 5) {
-        newWordList.push(word);
-      }
-    });
   };
 
   // 英単語の追加を行う
@@ -99,7 +91,7 @@ export const Top = memo(() => {
         </div>
         <div className="w-full mx-5">
           <TableTitle />
-          <Table wordList={wordList.slice().reverse()} />
+          <Table wordList={wordList.slice().reverse().slice(0, 6)} />
         </div>
       </div>
       {/* 登録された単語のカードの表示 */}

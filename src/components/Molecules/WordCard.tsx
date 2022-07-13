@@ -17,10 +17,20 @@ export const WordCard: FC<Props> = (props: Props) => {
   // modalのフラグ
   const [showModal, setShowModal] = useState(false);
 
+  // modalから単語を削除後にmodalを閉める処理
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   // 英単語の読み上げ機能実装
   const ReadEnglish = () => {
     const speackWord = new SpeechSynthesisUtterance(word);
     speechSynthesis.speak(speackWord);
+  };
+
+  // modalの開閉を管理する関数
+  const changeModalStatus = () => {
+    setShowModal(!showModal);
   };
 
   return (
@@ -38,19 +48,22 @@ export const WordCard: FC<Props> = (props: Props) => {
         <div className="flex mt-4 space-x-3 lg:mt-6">
           <button
             className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-            onClick={() => setShowModal(!showModal)}
+            onClick={changeModalStatus}
           >
             answer
           </button>
-          <button
-            className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100"
-            onClick={() => deleteWord(index)}
-          >
-            delete
-          </button>
         </div>
       </div>
-      {showModal && <Modal />}
+      {showModal && (
+        <Modal
+          word={word}
+          answer={answer}
+          setShowModal={changeModalStatus}
+          deleteWord={deleteWord}
+          index={index}
+          closeModal={closeModal}
+        />
+      )}
     </div>
   );
 };
